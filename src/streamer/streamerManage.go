@@ -209,6 +209,7 @@ func (this *StreamerService) addUpstream(app *eLiveListCtrl.EveSetUpStreamApp) (
 }
 
 func (this *StreamerService) delUpstream(app *eLiveListCtrl.EveSetUpStreamApp) (err error) {
+	logger.LOGI("delUpstream ",app)
 	this.mutexUpStream.Lock()
 	defer this.mutexUpStream.Unlock()
 	for e := this.upApps.Front(); e != nil; e = e.Next() {

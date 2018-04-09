@@ -32,6 +32,7 @@ func (asmh *adminStreamManageHandler) getRoute() (route string) {
 	return asmh.Route
 }
 
+/*通过http请求来提供服务的*/
 func (asmh *adminStreamManageHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	if req.RequestURI == asmh.Route {
 		asmh.handleStreamManageRequest(w, req)

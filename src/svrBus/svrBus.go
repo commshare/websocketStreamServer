@@ -128,6 +128,7 @@ func (this *SvrBus) loadConfig() (err error) {
 	}
 
 	if len(cfg.BackendConfigName) > 0 {
+		/*提供http支持的，牛啊*/
 		backendSvr := &backend.BackendService{}
 		msg := &wssAPI.Msg{}
 		msg.Param1 = cfg.BackendConfigName

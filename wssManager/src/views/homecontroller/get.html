@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="js/sha256.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+</head>
+
+<body>
+    <div id="login">
+        <div id="picHead" align="center">
+            <img src="http://cover.acfunwiki.org/cover.php"></img>
+            <div>
+                <h1>登录</h1>
+                <form method="post" id="loginForm" onsubmit="checkForm()">
+                    <input type="text" required="required" placeholder="地址" name="addr"></input>
+                    <input type="text" required="required" placeholder="用户名" name="usrName"></input>
+                    <input type="password" required="required" placeholder="密码" name="pwd" id="pwd"></input>
+                    <button type="submit" class="but">登录</button>
+                </form>
+                <p1>{{.Errcode}}</p1>
+            </div>
+</body>
+<script>
+    // var loginForm = document.getElementById("loginForm");
+
+    // function shaPwd(event) {
+    //     var pwd = document.getElementById("pwd").value;
+    //     document.getElementById("pwd").value = SHA256(pwd);
+    //     alert(document.getElementById("pwd").value);
+    // }
+    // loginForm.addEventListener("submit", shaPwd, false);
+    function checkForm() {
+        var pwd = document.getElementById("pwd").value;
+        document.getElementById("pwd").value = SHA256(pwd);
+
+    }
+</script>
+
+</html>

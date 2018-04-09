@@ -1,0 +1,33 @@
+#login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -150px;
+    width: 300px;
+    height: 300px;
+}
+
+#login h1 {
+    color: #000;
+    text-shadow: 0 0 1px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+#login p1 {
+    font-size: 15px;
+    color: #ff0000;
+    text-shadow: 0 0 2px;
+}
+
+#picHead img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    /*text-align: center;*/
+}

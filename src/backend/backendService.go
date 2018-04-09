@@ -40,6 +40,7 @@ func (this *BackendService) Init(msg *wssAPI.Msg) (err error) {
 
 	go func() {
 		strPort := ":" + strconv.Itoa(serviceConfig.Port)
+		logger.LOGI("backend port :",strPort)
 		handlers := backendHandlerInit()
 		mux := http.NewServeMux()
 		for _, item := range handlers {
