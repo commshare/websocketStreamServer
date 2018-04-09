@@ -183,6 +183,7 @@ func (this *StreamerService) checkStreamAddAble(appStreamname string) bool {
 }
 
 func (this *StreamerService) addUpstream(app *eLiveListCtrl.EveSetUpStreamApp) (err error) {
+	logger.LOGI("addUpstream ",app)
 	this.mutexUpStream.Lock()
 	defer this.mutexUpStream.Unlock()
 	exist := false
@@ -234,6 +235,7 @@ func (this *StreamerService) badIni() {
 func (this *StreamerService) InitUpstream(up eLiveListCtrl.EveSetUpStreamApp) {
 
 	up.Add = true
+	/*一个up就是一个task啊*/
 	this.HandleTask(&up)
 }
 

@@ -86,6 +86,7 @@ func (this *RTSPService) rtspLoop(listener *net.TCPListener) {
 }
 
 func (this *RTSPService) handleConnect(conn net.Conn) {
+	logger.LOGI("handleConnect %v",conn)
 	defer func() {
 		conn.Close()
 	}()

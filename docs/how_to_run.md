@@ -1,3 +1,9 @@
+#
+
+##
+```
+root@ubuntu:/home/zhangbin/ffmpeg/RECORD_TEST/refref/websocketStreamServer/src/streamServer# ./main.exe
++ ./main.exe
 [2018/04/09 15:02:17] [WARN] svrBus.go:66 use default :config.json
 [2018/04/09 15:02:17] [DEBUG] streamerManage.go:192 hk
 [2018/04/09 15:02:17] [DEBUG] streamerManage.go:192 ams
@@ -13,3 +19,12 @@
 [2018/04/09 15:02:17] [INFO] svrBus.go:239 start HLSServer successed
 [2018/04/09 15:02:17] [INFO] svrBus.go:239 start DASHServer successed
 [2018/04/09 15:02:17] [INFO] svrBus.go:239 start StreamerServer successed
+[2018/04/09 15:02:17] [TRACE] RTMPService.go:59 start rtmp service
+[2018/04/09 15:02:17] [INFO] svrBus.go:239 start RTMPServer successed
+[2018/04/09 15:02:17] [INFO] svrBus.go:239 start WebsocketServer successed
+^C
+root@ubuntu:/home/zhangbin/ffmpeg/RECORD_TEST/refref/websocketStreamServer/src/streamServer#
+
+
+
+```

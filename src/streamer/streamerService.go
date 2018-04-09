@@ -47,6 +47,7 @@ var service *StreamerService
 var serviceConfig StreamerConfig
 
 func (this *StreamerService) Init(msg *wssAPI.Msg) (err error) {
+	logger.LOGI("StreamerService init msg %v begin",msg)
 	this.sources = make(map[string]*streamSource)
 	this.blacks = make(map[string]string)
 	this.whites = make(map[string]string)
@@ -59,6 +60,7 @@ func (this *StreamerService) Init(msg *wssAPI.Msg) (err error) {
 		err = this.loadConfigFile(fileName)
 	}
 	this.badIni()
+	logger.LOGI("StreamerService init msg %v end",msg)
 	return
 }
 
@@ -74,7 +76,9 @@ func (this *StreamerService) loadConfigFile(fileName string) (err error) {
 		return
 	}
 
-	for _, v := range serviceConfig.Upstreams {
+	for index, v := range serviceConfig.Upstreams {
+		logger.LOGI("index %v up %v ",index,v)
+		/*初始化配置的upstream们*/
 		this.InitUpstream(v)
 	}
 	return
@@ -91,9 +95,9 @@ func (this *StreamerService) Stop(msg *wssAPI.Msg) (err error) {
 func (this *StreamerService) GetType() string {
 	return wssAPI.OBJ_StreamerServer
 }
-
+/*处理up task*/
 func (this *StreamerService) HandleTask(task wssAPI.Task) (err error) {
-
+	logger.LOGI("task type %v task.Receiver() %v ",task.Type(),task.Receiver())
 	if task == nil || task.Receiver() != this.GetType() {
 		logger.LOGE("bad stask")
 		return errors.New("invalid task")
