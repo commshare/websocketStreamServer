@@ -1,0 +1,9 @@
+#ignore file
+.idea/
+.vs/
+.vscode/
+.project
+bin/
+pkg/
+debug
+test.flv
