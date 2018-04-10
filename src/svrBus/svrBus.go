@@ -33,7 +33,7 @@ type busConfig struct {
 
 type SvrBus struct {
 	mutexServices sync.RWMutex
-	services      map[string]wssAPI.Obj
+	services      map[string]wssAPI.Obj  /*所有服务都存在这个map里*/
 }
 
 var service *SvrBus
@@ -63,7 +63,7 @@ func (this *SvrBus) loadConfig() (err error) {
 	if len(os.Args) > 1 {
 		configName = os.Args[1]
 	} else {
-		logger.LOGW("use default :config.json")
+		logger.LOGW("use default :config.json")  /*明确读取config.json,获取各类服务的配置信息*/
 		configName = "config.json"
 	}
 	data, err := wssAPI.ReadFileAll(configName)
@@ -84,9 +84,9 @@ func (this *SvrBus) loadConfig() (err error) {
 	}
 
 	if true {
-		livingSvr := &streamer.StreamerService{}
+		livingSvr := &streamer.StreamerService{} /*一定要创建streamer服务*/
 		msg := &wssAPI.Msg{}
-		if len(cfg.StreamManagerConfigName) > 0 {
+		if len(cfg.StreamManagerConfigName) > 0 {  /*这里面默认配置的是upstream*/
 			msg.Param1 = cfg.StreamManagerConfigName
 		}
 		err = livingSvr.Init(msg)
@@ -94,7 +94,7 @@ func (this *SvrBus) loadConfig() (err error) {
 			logger.LOGE(err.Error())
 		} else {
 			this.mutexServices.Lock()
-			this.services[livingSvr.GetType()] = livingSvr
+			this.services[livingSvr.GetType()] = livingSvr /*直播服务*/
 			this.mutexServices.Unlock()
 		}
 	}
@@ -255,7 +255,7 @@ func (this *SvrBus) Stop(msg *wssAPI.Msg) (err error) {
 func (this *SvrBus) GetType() string {
 	return wssAPI.OBJ_ServerBus
 }
-
+/*task是外面传入的*/
 func (this *SvrBus) HandleTask(task wssAPI.Task) (err error) {
 	this.mutexServices.RLock()
 	defer this.mutexServices.RUnlock()
@@ -263,6 +263,7 @@ func (this *SvrBus) HandleTask(task wssAPI.Task) (err error) {
 	if exist == false {
 		return errors.New("invalid task")
 	}
+	/*处理task，各类都有*/
 	return handler.HandleTask(task)
 }
 

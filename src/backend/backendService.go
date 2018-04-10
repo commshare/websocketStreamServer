@@ -99,6 +99,7 @@ func backendHandlerInit() []backendHander {
 	adminLoginHandle := &adminLoginHandler{}
 	lgData := &wssAPI.Msg{}
 	loginData := adminLoginData{}
+	/*管理员配置里写入的密码和账号*/
 	loginData.password = serviceConfig.RootPwd
 	loginData.username = serviceConfig.RootName
 	lgData.Param1 = loginData

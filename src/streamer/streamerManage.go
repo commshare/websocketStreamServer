@@ -323,7 +323,7 @@ func (this *StreamerService) pullStreamExec(app, streamName string, addr *eLiveL
 	}
 	return
 }
-
+/*试试能拉取流么？*/
 func (this *StreamerService) pullStream(app, streamName, sinkId string, sinker wssAPI.Obj) {
 	//按权重随机一个
 	addr := this.getUpAddrAuto()

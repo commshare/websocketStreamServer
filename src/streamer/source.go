@@ -15,7 +15,7 @@ type streamSource struct {
 	addr         net.Addr
 	bProducer    bool
 	mutexSink    sync.RWMutex
-	sinks        map[string]*streamSink
+	sinks        map[string]*streamSink /*这个也重要*/
 	streamName   string
 	metadata     *flv.FlvTag
 	audioHeader  *flv.FlvTag
@@ -23,7 +23,7 @@ type streamSource struct {
 	lastKeyFrame *flv.FlvTag
 	createId     int64
 	mutexId      sync.RWMutex
-	dataProducer wssAPI.Obj
+	dataProducer wssAPI.Obj  /*这里有个，啥时候赋值呢，*/
 }
 
 func (this *streamSource) Init(msg *wssAPI.Msg) (err error) {

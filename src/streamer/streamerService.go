@@ -230,7 +230,7 @@ func (this *StreamerService) addsource(path string, producer wssAPI.Obj, addr ne
 	}
 	this.mutexSources.Lock()
 	defer this.mutexSources.Unlock()
-	logger.LOGT("add source:" + path)
+	logger.LOGT("StreamerService add source:" + path)
 	oldSrc, exist := this.sources[path]
 	if exist == false {
 		oldSrc = &streamSource{}

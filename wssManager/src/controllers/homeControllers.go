@@ -9,6 +9,7 @@ import (
 	"backendCtrl"
 
 	"github.com/astaxie/beego"
+	"fmt"
 )
 
 const tokenName = "usrData"
@@ -47,6 +48,7 @@ func (this *HomeController) Post() {
 }
 
 func (this *HomeController) login(addr, usrName, pwd string) (err error) {
+	fmt.Printf("login with %v %v %v \n",addr,usrName,pwd)
 	/*要支持这么个http地址的请求啊*/
 	reqAddr := "http://" + addr + "/admin/login"
 	/*http的东东*/
