@@ -7,6 +7,7 @@ import (
 	"errors"
 	"net/http"
 	"wssAPI"
+	"logger"
 )
 
 type adminLoginHandler struct {
@@ -46,9 +47,9 @@ func (alh *adminLoginHandler) ServeHTTP(w http.ResponseWriter, req *http.Request
 		SendResponse(badrequestResponse, err, w)
 	}
 }
-
+/*处理登录请求*/
 func (alh *adminLoginHandler) handleLoginRequest(w http.ResponseWriter, req *http.Request) {
-	if req.Method != "POST" {
+	if req.Method != "POST" { /*必需是post*/
 		result, err := BadRequest(WSS_RequestMethodError, "bad request in login ")
 		SendResponse(result, err, w)
 	} else {
@@ -56,6 +57,7 @@ func (alh *adminLoginHandler) handleLoginRequest(w http.ResponseWriter, req *htt
 		password := req.PostFormValue("password")
 		if len(username) > 0 && len(password) > 0 {
 			ispass, authToken := compAuth(username, password)
+			logger.LOGI("ispass ",ispass," authToken :",authToken)
 			if ispass {
 				alh.isLogin = true
 				alh.AuthToken = authToken
@@ -66,6 +68,7 @@ func (alh *adminLoginHandler) handleLoginRequest(w http.ResponseWriter, req *htt
 				SendResponse(responseData, err, w)
 			}
 		} else {
+			logger.LOGI("username or passwd empty :",username,password)
 			responseData, err := BadRequest(WSS_ParamError, "login auth error")
 			SendResponse(responseData, err, w)
 		}
@@ -85,6 +88,15 @@ func passAuthResponseData(authToken string) ([]byte, error) {
 }
 
 func compAuth(username, password string) (ispass bool, authToken string) {
+	logger.LOGI("loginData name :",loginData.username," passwd :",loginData.password)
+	if loginData.username == username {
+		logger.LOGI("username ok")
+	}
+	if loginData.password == password {
+		logger.LOGI("password ok")
+	}else{
+		logger.LOGI("db passwd ",loginData.password,"passed in passwd :",password)
+	}
 	if loginData.username == username && loginData.password == password {
 		hash := md5.New()
 		hash.Write([]byte(username + password))
